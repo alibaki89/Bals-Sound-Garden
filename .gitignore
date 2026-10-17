@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Player data (generated at runtime)
+save/collection.json
+save/projects/*.json
+save/samples/*
+exports/*.wav
+
+# Local test and development artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+*.tmp
+release_stage/
+*.zip
+.DS_Store
+Thumbs.db

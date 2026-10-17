@@ -1,0 +1,6 @@
+# Reproducible dependencies used by GitHub Actions release builds.
+pygame==2.6.1
+numpy==2.2.6
+PyInstaller==6.21.0
+pyinstaller-hooks-contrib==2026.6
+build==1.5.1

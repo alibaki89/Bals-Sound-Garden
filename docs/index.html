@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A detailed project page for Bal's Sound Garden, a Python, Pygame, NumPy and SciPy game by ABProjects.">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Bal's Sound Garden — Project Explanation</title>
+  <style>
+    :root {
+      --paper: #f4f0e5;
+      --paper-2: #ebe5d8;
+      --ink: #252923;
+      --muted: #62665e;
+      --line: #c9c1af;
+      --green: #3f694c;
+      --green-dark: #294735;
+      --cream: #fffdf6;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      text-rendering: optimizeLegibility;
+    }
+
+    img, iframe { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244, 240, 229, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 40px));
+      min-height: 62px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover { color: var(--ink); border-color: var(--ink); }
+
+    .hero {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 58px auto 0;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(480px, 1.35fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.14;
+      letter-spacing: -0.035em;
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 22px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 7vw, 82px);
+      font-weight: 600;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4.4vw, 54px);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.62;
+      color: #40443e;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border: 1px solid var(--green-dark);
+      background: var(--green-dark);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 4px;
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: transparent;
+      border-color: var(--line);
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .hero-image,
+    .wide-image {
+      width: 100%;
+      border: 1px solid #a9a28f;
+      background: #d9d4c9;
+      box-shadow: 0 14px 34px rgba(42, 43, 37, 0.12);
+    }
+
+    .hero-image {
+      aspect-ratio: 1915 / 978;
+      object-fit: cover;
+    }
+
+    .facts {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 44px auto 0;
+      padding: 22px 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact {
+      padding: 0 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .fact:first-child { padding-left: 0; }
+    .fact:last-child { border-right: 0; }
+    .fact strong { display: block; font-size: 20px; line-height: 1.3; }
+    .fact span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+    main { overflow: hidden; }
+
+    .section {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 100px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.52fr) minmax(0, 1.48fr);
+      gap: 70px;
+      align-items: start;
+    }
+
+    .section-label {
+      position: sticky;
+      top: 98px;
+    }
+
+    .section-label p {
+      max-width: 260px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .copy p { margin: 0 0 20px; }
+    .copy p:last-child { margin-bottom: 0; }
+    .copy > h3:not(:first-child) { margin-top: 38px; }
+
+    .plain-list {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .plain-list li {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .plain-list strong { font-size: 15px; }
+    .plain-list span { color: #454a43; }
+
+    .image-break {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .image-break img {
+      width: 100%;
+      border-left: 1px solid #aaa28f;
+      border-right: 1px solid #aaa28f;
+    }
+
+    .split-images {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 70px 0 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .split-images img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+      border: 1px solid #aaa28f;
+    }
+
+    .technical-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .technical-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 246, 0.45);
+      border-radius: 4px;
+    }
+
+    .technical-card p { margin: 0; color: #484d46; font-size: 15px; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      font-size: 15px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 13px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-table th {
+      padding-top: 0;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .media-section {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 100px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 0.75fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid #a9a28f;
+      background: #111;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .game-box {
+      min-height: 100%;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--cream);
+    }
+
+    .game-box h3 { font-family: Georgia, "Times New Roman", serif; font-size: 30px; }
+    .game-box p { color: var(--muted); }
+    .itch-wrap { margin-top: 22px; overflow: hidden; }
+    .itch-wrap iframe { max-width: none; }
+
+    .closing {
+      width: min(820px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 100px 0 120px;
+      text-align: center;
+    }
+
+    .closing p {
+      margin: 0 auto 28px;
+      max-width: 700px;
+      font-size: 19px;
+      color: #444941;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 34px; }
+      .hero-image { order: -1; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact { padding: 16px 18px; border-bottom: 1px solid var(--line); }
+      .fact:nth-child(2n) { border-right: 0; }
+      .fact:last-child { grid-column: 1 / -1; border-bottom: 0; }
+      .section-grid { grid-template-columns: 1fr; gap: 28px; }
+      .section-label { position: static; }
+      .section-label p { max-width: 640px; }
+      .media-grid { grid-template-columns: 1fr; }
+      .split-images { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      body { font-size: 16px; }
+      .topbar-inner, .hero, .facts, .section, .media-section, .split-images { width: min(100% - 24px, var(--max)); }
+      .hero { margin-top: 28px; }
+      .facts { grid-template-columns: 1fr; }
+      .fact, .fact:first-child { padding: 14px 0; border-right: 0; }
+      .fact:last-child { grid-column: auto; }
+      .section, .media-section { padding: 72px 0; }
+      .plain-list li { grid-template-columns: 1fr; gap: 5px; }
+      .technical-grid { grid-template-columns: 1fr; }
+      .data-table { font-size: 13px; }
+      .data-table th, .data-table td { padding: 11px 7px; }
+      .game-box { padding: 20px; }
+      .itch-wrap { transform-origin: top left; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    /* Official itch.io screenshot gallery; preserves the portfolio's cream/green theme. */
+    .itch-gallery { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; padding: 76px 0 90px; border-bottom: 1px solid var(--line); }
+    .itch-gallery-header { max-width: 800px; margin: 0 0 34px; }
+    .itch-gallery-header h2 { margin: 10px 0 14px; }
+    .itch-gallery-header p:not(.eyebrow) { color: var(--muted); }
+    .itch-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .itch-gallery-grid a { display: block; color: inherit; text-decoration: none; }
+    .itch-gallery-grid figure { margin: 0; }
+    .itch-gallery-grid img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #e7e6dd; border: 1px solid #b1b6a7; box-shadow: 0 9px 20px rgba(42, 43, 37, .09); }
+    .itch-gallery-grid figcaption { color: var(--muted); padding: 9px 1px; font-size: 13px; }
+    @media(max-width: 680px) { .itch-gallery-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Bal's Sound Garden</div>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#game">The game</a>
+        <a href="#world">World and rendering</a>
+        <a href="#sound">Sound system</a>
+        <a href="#maker">Music Maker</a>
+        <a href="#story">Story systems</a>
+        <a href="#release">Release engineering</a>
+        <a href="https://github.com/alibaki89/Bals-Sound-Garden">Source code</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="game">
+      <div>
+        <p class="eyebrow">Python game project</p>
+        <h1>Bal's Sound Garden</h1>
+        <p class="lead">A cozy music-making adventure and shop-management game built in Python without a conventional game engine. The project combines an endless exploration world, a procedural audio system, a full in-game sequencer, and a persistent story simulation.</p>
+        <div class="hero-actions">
+          <a class="button" href="https://abprojects.itch.io/bals-sound-garden" target="_blank" rel="noopener">Download the game</a>
+          <a class="button secondary" href="#watch">Watch the trailer</a>
+          <a class="button secondary" href="https://github.com/alibaki89/Bals-Sound-Garden">Browse source</a>
+        </div>
+      </div>
+      <img class="hero-image" src="assets/shop-and-animals.png" alt="Bal outside the music shop with animal visitors in the generated world">
+    </section>
+
+    <section class="facts" aria-label="Project facts">
+      <div class="fact"><strong>Python</strong><span>Core game and tools</span></div>
+      <div class="fact"><strong>Pygame</strong><span>Rendering, input, windowing and audio playback</span></div>
+      <div class="fact"><strong>NumPy + SciPy</strong><span>Synthesis, mixing, filtering and convolution</span></div>
+      <div class="fact"><strong>2,946 sounds</strong><span>Finite authored catalog before infinite generation</span></div>
+      <div class="fact"><strong>4 desktop targets</strong><span>Windows, Linux, Intel macOS and Apple silicon macOS</span></div>
+    </section>
+
+    <section class="section">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">What the player does</p>
+          <h2>The game connects exploration, composition and shop management</h2>
+          <p>Each major system feeds the next one instead of existing as a separate menu or minigame.</p>
+        </div>
+        <div class="copy">
+          <p>You play as Bal, a well-known cat music maker who arrives on a new island and opens its music shop. Animals visit with requests for lullabies, celebrations, travel music, night pieces, rhythms, sound seeds and location-based commissions. Bal can accept a request or decline it. Accepted requests must be completed before the deadline.</p>
+          <p>Exploration supplies the musical material. Notes, bass tones, chords, drums, rhythms, melodic phrases, ambience and effects appear throughout the world as collectible components. A collected component is not a score token or an abstract unlock. It is an actual playable sound that becomes available in the Music Maker and the Soundbook.</p>
+          <p>The resulting songs can be performed for clients, saved as projects, exported as WAV files, or placed in the world through gramophones. Individual sounds can also be planted as sprouts. Sprouts play on the garden beat when Bal or an animal crosses their ring, which allows the environment itself to perform simple arrangements.</p>
+          <p>Story mode adds the shop clock, client appointments, deadlines, coins, reputation, a travelling merchant, decorations, visible upgrades and three animal helpers. Creative mode keeps the original free-play world and music sandbox separate, with its own collection, songs and world state.</p>
+
+          <ul class="plain-list">
+            <li><strong>Explore</strong><span>Walk, run, jump, swim, cross bridges, collect sounds and find different musical regions.</span></li>
+            <li><strong>Compose</strong><span>Arrange the collected material on a multitrack step grid, connect tiles into phrases, apply effects and play the result.</span></li>
+            <li><strong>Run the shop</strong><span>Read structured briefs, manage time and deadlines, deliver music, earn coins and build the business.</span></li>
+            <li><strong>Change the world</strong><span>Plant sound sprouts, place looping gramophones, install decorations and complete field commissions at persistent locations.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="image-break">
+      <img src="assets/night-shop.png" alt="Bal's shop and generated landscape at night with moon, stars and distant mountains">
+    </div>
+
+    <section class="section" id="world">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">World and rendering</p>
+          <h2>The 2.5D world is drawn and projected by the game</h2>
+          <p>The visual system is a custom Pygame renderer rather than a level made in a commercial engine.</p>
+        </div>
+        <div class="copy">
+          <h3>World-space coordinates and perspective</h3>
+          <p>The playable world is stored in horizontal X and depth Z coordinates. A focal-length perspective calculation converts depth into screen scale, moves distant objects toward the meadow horizon, and offsets their horizontal position relative to the camera. This gives the scene depth while keeping movement and collision on a simple ground plane.</p>
+          <p>Visible props, water structures, animals, the player and world objects are gathered into one depth list and sorted by their projected ground position. That shared ordering is what lets Bal pass naturally in front of or behind trees, animals, bridges, boats, buildings and planted objects.</p>
+
+          <h3>Runtime-drawn art</h3>
+          <p>Most of the world art is created at runtime with Pygame shapes. Trees, flowers, stones, grass, buildings, water details, the cat and the animal roster are assembled from polygons, ellipses, circles and lines. This makes animation and perspective scaling part of the same drawing system instead of requiring a large set of pre-rendered sprites for every pose and size.</p>
+          <p>The world first renders to a low-resolution logical canvas based on a 384 × 216 composition. It is then presented with a fixed integer scale to preserve hard pixel edges. Fullscreen does not simply enlarge the same image. It expands the logical canvas around the original composition, so a larger display reveals more of the world while Bal and the interface keep the same physical size.</p>
+
+          <h3>Stable motion and controlled detail</h3>
+          <p>The horizontal camera origin is quantized to the logical pixel grid. Without this step, distant objects would cross different rounding boundaries during small camera movements and the background would appear to shimmer. Snapping the world movement to shared pixel increments keeps the far field stable while forward and backward depth movement remains continuous.</p>
+          <p>Rendering work is limited by depth, scale and screen bounds. Small decorations disappear before they become visual noise, distant objects blend toward the atmospheric haze, and close grass uses a separate denser pass. The result keeps nearby areas detailed without processing the entire endless world every frame.</p>
+
+          <div class="technical-grid">
+            <div class="technical-card"><h3>Painted atmosphere</h3><p>Mountains, mist, ground color, water haze and distant props use coordinated fading so depth remains readable without a 3D engine.</p></div>
+            <div class="technical-card"><h3>Day and night</h3><p>Cached sky stages cover dawn, morning, noon, golden hour, sunset, dusk and night, with a moving sun, moon, stars and seeded auroras.</p></div>
+            <div class="technical-card"><h3>Water geometry</h3><p>Coastlines, rivers, ponds and lakes are generated separately from ordinary scenery and provide depth-aware swimming, crossings, boats and shoreline rules.</p></div>
+            <div class="technical-card"><h3>Music as light</h3><p>Sprouts and gramophones create warm pools of light after dark, allowing sound objects to affect both audio and world presentation.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Endless island</p>
+          <h2>The same seed rebuilds the same places</h2>
+          <p>The world can extend indefinitely without saving a complete map.</p>
+        </div>
+        <div class="copy">
+          <p>A new profile receives one persistent world seed. The seed is stored with the player's world state and is reused on later launches. World space is divided into fixed-size cells, and each cell derives its own stable random seed from the world seed and its coordinates.</p>
+          <p>Different parts of a cell use separate deterministic streams. Gameplay scenery, decorative dressing and close ground cover do not consume the same random sequence. This means adding a visual detail to one layer does not silently move the trees, water or collectibles generated by another layer.</p>
+          <p>Only the cells near the camera are generated and kept in memory. Scenery farther away can be removed from the cache because it can be reconstructed exactly from the same coordinate hash when the player returns. Water layout, animal placement and musical pickups follow the same deterministic approach.</p>
+          <p>Player-made changes are stored separately from generated scenery. The save data records the seed and the things that cannot be reconstructed: collected components, planted sprouts, gramophones, decorations, finished work, machine state, story progress and other persistent actions. This keeps the save compact while allowing the island to remain consistent.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Animal system</p>
+          <h2>Twenty species use the same procedural art and animation pipeline</h2>
+          <p>The animal visitors and wildlife are generated from the game's drawing language rather than imported character sheets.</p>
+        </div>
+        <div class="copy">
+          <p>The active roster contains rabbits, dogs, foxes, raccoons, squirrels, frogs, turtles, pigs, goats, chickens, ducks, birds, butterflies, deer, sheep, cows, horses, owls, hedgehogs and tanuki. Each species defines its size, habitat, temperament, speed and spawn weighting, while the renderer supplies its proportions, markings and pose.</p>
+          <p>Animation is calculated from body-part positions. Walking changes leg angles, body height, head movement and forward lean. Idle animals breathe, blink and move their ears. Hoppers tuck their legs, sleeping animals settle into lower poses, and friendly animals can react with playful expressions and effects.</p>
+          <p>The behavior layer uses readable states such as wandering, resting, sleeping, fleeing, approaching and playing. Story clients add another state machine on top of the same animal actors: travelling to the shop, queueing, waiting, leaving for an appointment, returning, listening to a performance, reacting and walking away.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="split-images">
+      <img src="assets/client-request.png" alt="A dog client explaining a structured music request to Bal">
+      <img src="assets/shop-daylight.png" alt="Bal standing outside the music shop beside the river in daylight">
+    </div>
+
+    <section class="section" id="sound">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Sound catalog and synthesis</p>
+          <h2>The collected items are real audio building blocks</h2>
+          <p>The catalog, infinite generator and synthesizer are designed as one system.</p>
+        </div>
+        <div class="copy">
+          <h3>The finite catalog</h3>
+          <p>The game contains 2,946 authored components before infinite generation is considered. This includes the original hand-built set and a 2,668-entry Sound Atlas. Ten starter components are available immediately, while the rest are distributed by family, region and rarity.</p>
+          <p>The Sound Atlas expands the palette across 47 melodic or tonal voices, 44 drum definitions, 28 ambience sources and 17 effect types. Components are assigned to the Meadow, Rhythm Path, Riverbank, Grove of Chords, Deepwood, Animal Corners, Hidden Clearings or the separate reward collection. Common material appears closer to the beginning, while rarer and more unusual sounds are placed deeper into exploration.</p>
+
+          <table class="data-table" aria-label="Catalog component counts">
+            <thead><tr><th>Music Maker destination</th><th>Components</th><th>What it contains</th></tr></thead>
+            <tbody>
+              <tr><td>Melody</td><td>1,010</td><td>Single notes and tonal voices</td></tr>
+              <tr><td>Chords</td><td>767</td><td>Triads, extended voicings and harmonic material</td></tr>
+              <tr><td>Bass</td><td>208</td><td>Bass notes and low-register components</td></tr>
+              <tr><td>Drums</td><td>115</td><td>Individual percussion hits</td></tr>
+              <tr><td>Rhythms</td><td>201</td><td>Ready-made drum patterns and grooves</td></tr>
+              <tr><td>Loops</td><td>423</td><td>Melodic phrases, basslines and longer patterns</td></tr>
+              <tr><td>Ambience</td><td>134</td><td>Environmental beds and sustained background layers</td></tr>
+              <tr><td>Effects</td><td>88</td><td>Track processing presets and effect chains</td></tr>
+            </tbody>
+          </table>
+
+          <h3>ComponentDNA v2</h3>
+          <p>Unexplored areas can continue producing new sounds after the finite catalog is exhausted. Generated components use compact versioned identifiers such as <code>proc2.&lt;seed&gt;</code>. The identifier is enough to reconstruct the component definition and waveform, so procedural discoveries do not require full audio files in the save.</p>
+          <p>BLAKE2s hashing creates separate named random streams for identity, harmony, rhythm, timbre, naming, drum-kit design, ambience and effects. A change to the rhythm generator therefore does not unexpectedly rename a component or change its key. Older <code>proc.&lt;seed&gt;</code> components keep their original generator so existing saves continue to reproduce the same sounds.</p>
+          <p>The generator covers ten musical families and twelve style grammars, including lullaby, forest folk, nocturne, ambient, cinematic, garden jazz, clockwork, electronic, pixel garden, world garden, glitch bloom and animal chorus. It chooses from fifteen scales and modes, then builds motifs, chord voicings, progressions, drum kits, grooves, layered soundscapes and controlled effect chains. Rarity changes structural complexity rather than simply marking a sound as better.</p>
+
+          <h3>NumPy and SciPy audio</h3>
+          <p>Audio is synthesized as 44.1 kHz NumPy floating-point buffers. The engine combines sine, triangle, saw and square oscillators with noise, harmonics, detuning, frequency modulation and ADSR envelopes. Instrument families have different synthesis recipes for keys, bells, plucks, winds, pads, strings, basses, animal voices and percussion.</p>
+          <p>SciPy supplies Butterworth filtering and FFT-based convolution. Filters shape low and high frequencies, while convolution creates the reverb path. The rest of the effect system includes delay, tremolo, chorus, phasing, drive, ring modulation, vibrato, gating, compression, resonators, bit reduction and generated multi-stage chains.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="image-break">
+      <img src="assets/music-maker.png" alt="The Music Maker arrangement screen with melody, chords, drums, loops and ambience tracks">
+    </div>
+
+    <section class="section" id="maker">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Music Maker</p>
+          <h2>The sequencer uses the same audio path for editing, playback and export</h2>
+          <p>The composition interface is not a mock screen. It builds the projects used by the rest of the game.</p>
+        </div>
+        <div class="copy">
+          <p>A project begins at 100 BPM with eight bars and a set of melody, chord, drum and loop tracks. The timeline uses eight eighth-note steps per bar. Players can change the tempo, extend the song from two to thirty-two bars, add tracks for any supported family, rename them, duplicate them, mute them, adjust volume and assign collected track effects.</p>
+          <p>Every placed tile stores a component identifier and a grid position. Its audible length is derived from the component itself: a drum hit occupies a short event, while a rhythm, loop or ambience block can cover several steps or bars. Project files remain small because they store arrangement data rather than rendered audio.</p>
+
+          <h3>Connected phrases</h3>
+          <p>The Connect tool lets several tiles on one track behave as one phrase. Sustaining voices receive one attack, a continuous body and one release. Chords use voice-leading lanes, ringing instruments overlap or extend naturally, drums keep their individual hits, ambience sections crossfade, and imported waveform material can use a sampler-style sustain. Ordinary unconnected tiles continue through the original render path.</p>
+          <p>Phrase rendering is deterministic and cached with bounded memory. Editing one phrase does not force every other phrase to be regenerated, and missing or damaged members fall back safely instead of making the whole song unusable.</p>
+
+          <h3>Playback and WAV export</h3>
+          <p>The Music Maker, world performances, gramophones and file exporter all use the same project mixer. That creates a clear “what you hear is what you export” boundary. Repeated sounds and effects use bounded LRU caches, while unique clips are mixed incrementally so dense projects do not require every intermediate buffer to remain in memory.</p>
+          <p>Export produces a standard 44.1 kHz, 16-bit stereo PCM WAV file. Rendering runs in a background worker from a snapshot of the current project, so the window remains responsive and later edits cannot change an export already in progress. The completed file is written to a temporary sibling and then published with an atomic replacement, which prevents an interrupted export from damaging an older file with the same name.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Story simulation</p>
+          <h2>The shop continues operating while Bal is composing</h2>
+          <p>Time, requests and client states are part of the same simulation as exploration.</p>
+        </div>
+        <div class="copy">
+          <h3>A live shop day</h3>
+          <p>A full Story day lasts twenty real minutes by default. The shop opens at 09:00 and closes at 18:00. The clock continues while Bal explores and while the Music Maker is open, but pauses when the game itself is paused. Walk-in clients have patience, accepted work has deadlines, and scheduled visitors can return later in the day or on a later date.</p>
+          <p>Clients are not fixed menu entries. They walk into the world, form a queue, wait, speak, leave temporarily, return for appointments, listen to performances, react to the result and physically depart. Completed clients can return one to four days later with dialogue that refers to the previous job.</p>
+
+          <h3>Deterministic request generation</h3>
+          <p>The request system combines more than fifty authored occasion types with species preferences, habitat, day, visit number, destination, recipient, difficulty, tempo range, required musical families, mood tags, energy, patience and delivery style. The same world seed, day, request serial, species and visit number reproduce the same structured brief, which keeps saving and testing reliable.</p>
+          <p>Requests can ask for a song at the counter, a collected sound seed, a sprout planted at a marked location, or a gramophone placed in the field. Active field jobs remain in the save and display a direction and distance marker until the object is delivered at the real destination.</p>
+
+          <h3>Explainable evaluation</h3>
+          <p>Song results are based on arrangement data rather than hidden audio classification. The game checks required families, dominant mood tags, tempo, energy, effort and cohesion. Missing a required family caps the result. Reusing the same arrangement reduces its freshness even when the song is renamed, because the system hashes the musical contents rather than the title.</p>
+          <p>Sound-seed requests compare the selected component's type, tags, home region and rarity. Result screens can therefore explain why a delivery matched or missed the brief instead of returning an unexplained score.</p>
+
+          <h3>Coins and visible growth</h3>
+          <p>Poko's travelling cart sells unowned sounds, twenty placeable decorations, five shop upgrades and helper contracts. Decorations remain in storage until Bal places them on clear ground. Lanterns and glowing jars emit light at night, while the waiting bench gives visitors a small patience benefit.</p>
+          <p>The upgrades appear physically around the shop: a request board, listening corner, sound cabinet, courier shelf and larger counter. Juniper the fox searches selected regions for sounds, Clover the rabbit records new offers while Bal is away, and Bramble the dog carries prepared ordinary field deliveries. They organize work but never compose music for the player.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="release">
+      <div class="section-grid">
+        <div class="section-label">
+          <p class="eyebrow">Persistence and release work</p>
+          <h2>The project includes the reliability work needed around the game itself</h2>
+          <p>Save handling, export safety, packaging and regression testing were treated as part of the finished project.</p>
+        </div>
+        <div class="copy">
+          <h3>Separate profiles and portable storage</h3>
+          <p>Story and Creative mode keep separate collections, worlds and song projects. Settings and shared resources remain outside the profile switch. Source builds can use local folders, while packaged builds redirect writable data to the operating system's per-user application-data location instead of writing beside an executable or inside a macOS application bundle.</p>
+          <p>Older local saves can be copied forward without overwriting newer files. Exported WAV files are treated as user documents and are not deleted by Reset Progress.</p>
+
+          <h3>Transactional saves</h3>
+          <p>Central JSON saves are serialized and validated before the final file is replaced. The game writes a unique temporary file in the destination directory, flushes it, reopens it for validation, and then commits it with an atomic replace. When an operation fails, the old file remains intact and the in-memory change is rolled back where necessary.</p>
+          <p>Malformed song projects are preserved on disk, skipped safely and reported with a non-blocking warning. Critical persistence, loading, audio and delivery failures are recorded in a bounded rotating log rather than being silently ignored.</p>
+
+          <h3>Packaging and tests</h3>
+          <p>The package metadata targets Python 3.8 or newer and declares Pygame, NumPy and SciPy as its runtime dependencies. The repository includes wheel configuration, a PyInstaller specification and a clean release-staging tool that excludes player saves, exports, logs, caches, tests and development notes from public archives.</p>
+          <p>The release test suite covers atomic persistence, failed overwrites, malformed projects, profile storage, WAV validity, deterministic synthesis, procedural reconstruction, catalog coverage, world pickup placement, story deadlines, courier transactions, client names, UI regressions and package contents. The focused release-hardening, packaging, ComponentDNA and Sound Atlas suites pass in headless Pygame.</p>
+          <p>The published release is available for Windows, Linux, Intel-based Macs and Apple silicon Macs. The platform builds were packaged and validated through GitHub Actions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITCH_GALLERY_START -->
+    <section class="itch-gallery" id="screenshots" aria-labelledby="itch-gallery-title">
+      <div class="itch-gallery-header">
+        <p class="eyebrow">Original itch.io imagery</p>
+        <h2 id="itch-gallery-title">Screenshots from the game</h2>
+        <p>These images are sourced from the official Bal's Sound Garden itch.io page. Select one to view the full-size original.</p>
+      </div>
+      <div class="itch-gallery-grid">
+        <a href="itch-gallery/01-cover.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/01-cover.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 1"><figcaption>Screenshot 1</figcaption></figure></a>
+        <a href="itch-gallery/02-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/02-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 2"><figcaption>Screenshot 2</figcaption></figure></a>
+        <a href="itch-gallery/03-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/03-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 3"><figcaption>Screenshot 3</figcaption></figure></a>
+        <a href="itch-gallery/04-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/04-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 4"><figcaption>Screenshot 4</figcaption></figure></a>
+        <a href="itch-gallery/05-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/05-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 5"><figcaption>Screenshot 5</figcaption></figure></a>
+        <a href="itch-gallery/06-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/06-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 6"><figcaption>Screenshot 6</figcaption></figure></a>
+        <a href="itch-gallery/07-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/07-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 7"><figcaption>Screenshot 7</figcaption></figure></a>
+        <a href="itch-gallery/08-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/08-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 8"><figcaption>Screenshot 8</figcaption></figure></a>
+        <a href="itch-gallery/09-screenshot.png" target="_blank" rel="noopener noreferrer"><figure><img src="itch-gallery/09-screenshot.png" loading="lazy" alt="Bal's Sound Garden — Screenshot 9"><figcaption>Screenshot 9</figcaption></figure></a>
+      </div>
+    </section>
+<!-- ITCH_GALLERY_END -->
+
+    <section class="media-section" id="watch">
+      <div class="media-grid">
+        <div>
+          <p class="eyebrow">Gameplay video</p>
+          <h2>See the systems working together</h2>
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/wqWPJ0aAL0E" title="Bal's Sound Garden gameplay video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+        <aside class="game-box">
+          <p class="eyebrow">Free download</p>
+          <h3>Play Bal's Sound Garden</h3>
+          <p>The itch.io page contains the current desktop builds and release information.</p>
+          <a class="button" href="https://abprojects.itch.io/bals-sound-garden" target="_blank" rel="noopener">Open the game page</a>
+          <div class="itch-wrap">
+            <iframe frameborder="0" src="https://itch.io/embed/4739137?linkback=true&amp;border_width=4" width="558" height="173"><a href="https://abprojects.itch.io/bals-sound-garden">Bal's Sound Garden by ABProjects</a></iframe>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">ABProjects</p>
+      <h2>A complete game built as a connected software system</h2>
+      <p>Bal's Sound Garden combines custom rendering, deterministic generation, procedural audio, music software, simulation, persistence and cross-platform release engineering in one finished project.</p>
+      <a class="button" href="https://abprojects.itch.io/bals-sound-garden" target="_blank" rel="noopener">Download it on itch.io</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Bal's Sound Garden — ABProjects</span>
+      <span>Python · Pygame · NumPy · SciPy · <a href="https://github.com/alibaki89/Bals-Sound-Garden" style="color:inherit">Source on GitHub</a> · Code: MIT · Game assets: separate terms</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bals-sound-garden"
+version = "1.0.0"
+description = "A cozy pixel-art exploration and music-making game built with Pygame."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "pygame>=2.0",
+    "numpy>=1.20",
+]
+
+[project.scripts]
+bals-sound-garden = "cat_society.app:main"
+
+[tool.setuptools.packages.find]
+include = ["cat_society*"]
+
+[tool.setuptools.package-data]
+cat_society = ["assets/**/*"]
+
+[tool.setuptools.data-files]
+"share/doc/bals-sound-garden" = [
+    "README.md",
+    "LICENSE",
+    "ASSETS_LICENSE.md",
+    "BUILDING.md",
+    "LICENSE.md",
+    "THIRD_PARTY_NOTICES.md",
+    "CREDITS.md",
+    "ASSET_LICENSE_REVIEW.md",
+    "RELEASE_REPORT.md",
+]

@@ -1,0 +1,15 @@
+digraph AudioWork {
+ rankdir=TB; graph [fontname="DejaVu Sans", bgcolor="white", ranksep="0.27", nodesep="0.28", pad="0.15"];
+ node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=11,color="#5c7b65",fillcolor="#f2f6ef",margin="0.16,0.10"];
+ edge [color="#537762", arrowsize=.7, penwidth=1.2];
+ Discover [label="Discover or generate\nsound component ID"];
+ Store [label="Collection / Soundbook"];
+ Arrange [label="Music Maker\nProject → tracks → clips / phrases"];
+ Resolve [label="Resolve ComponentDNA or atlas\nrender at project tempo"];
+ Mix [label="Mix clips, effects, phrases\nbounded audio caches"];
+ Play [label="Live preview and playback"];
+ Export [label="WAV export\n44.1 kHz · stereo PCM16"];
+ World [label="Planted sprout / gramophone\nspatial playback"];
+ Discover -> Store -> Arrange -> Resolve -> Mix;
+ Mix -> Play;Mix -> Export; Store -> World;
+}

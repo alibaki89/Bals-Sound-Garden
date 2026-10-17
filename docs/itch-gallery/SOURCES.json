@@ -1,0 +1,59 @@
+{
+  "source_page": "https://abprojects.itch.io/bals-sound-garden",
+  "images": [
+    {
+      "file": "01-cover.png",
+      "source": "https://img.itch.zone/aW1nLzI4MjU0MjE4LnBuZw==/original/83svIX.png",
+      "sha256": "6743805be946c6d21df24e5ee4c54475c4bfcddd022680e21e19fbee2096e434",
+      "bytes": "102995"
+    },
+    {
+      "file": "02-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODQ1MDAyNS5wbmc=/original/VsCU0%2B.png",
+      "sha256": "27f4b8fd0293526f60e7fd84a0217516cf9b0b3b731b997380d274337dbc8270",
+      "bytes": "87597"
+    },
+    {
+      "file": "03-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODQ1MDAyOC5wbmc=/original/ZGjhYy.png",
+      "sha256": "51f80108d9622a58e3fe4e3cca09982bf744d116eee51317415971aff88ca77f",
+      "bytes": "97983"
+    },
+    {
+      "file": "04-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODI1Mzg1OS5wbmc=/original/85XNIL.png",
+      "sha256": "2825bca18b2658733d7fe5030648dcde1cae9f8184dfa7afec6c1524249227ff",
+      "bytes": "53557"
+    },
+    {
+      "file": "05-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODQ1MDAyNy5wbmc=/original/ghPtpq.png",
+      "sha256": "db9fefa3e1f4fbcedce5ea0b9125cf3c24de2c76df12c9cb86eb35ac073e1f36",
+      "bytes": "56640"
+    },
+    {
+      "file": "06-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODI1Mzg0OS5wbmc=/original/QlC9zq.png",
+      "sha256": "9d33b7d142ae023bbb8fcfd990c4720aad8f82196e984b0aa48a07bb1b43aace",
+      "bytes": "54636"
+    },
+    {
+      "file": "07-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODQ1MDAyNi5wbmc=/original/7qJyY4.png",
+      "sha256": "95be4a68db83a986136067f00f54a4b407a6c4afb1c191398f149ec320be4dc9",
+      "bytes": "101850"
+    },
+    {
+      "file": "08-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODI1Mzg2MC5wbmc=/original/WpjPwT.png",
+      "sha256": "f702f826356e08c81cc94668285a760c865e4fe5e07328f4fa30feae92c5afcd",
+      "bytes": "52235"
+    },
+    {
+      "file": "09-screenshot.png",
+      "source": "https://img.itch.zone/aW1hZ2UvNDczOTEzNy8yODI1Mzg2Ni5wbmc=/original/VI2Jol.png",
+      "sha256": "d23745801dfe22627a171c426098408979bc4a3953b14bb9a9dd375111d27318",
+      "bytes": "26625"
+    }
+  ]
+}

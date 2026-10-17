@@ -1,0 +1,14 @@
+digraph BalArchitecture {
+ rankdir=LR; graph [fontname="DejaVu Sans", bgcolor="white", ranksep="0.36", nodesep="0.25", pad="0.12"];
+ node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=11,color="#5c7b65",fillcolor="#f2f6ef",margin="0.12,0.1"];
+ edge [color="#537762", arrowsize=.7, penwidth=1.2];
+ UI [label="Desktop entry and app\nmain.py · app.py"];
+ Screens [label="Screens and UI\nexplore · story · maker · menu"];
+ World [label="World and rendering\nseeded chunks · projection · animals"];
+ Music [label="Composition data\ntracks · clips · connected phrases"];
+ Audio [label="Audio processing\nsynthesis · live playback · WAV export"];
+ Story [label="Story simulation\nclock · clients · briefs · scoring"];
+ Store [label="Persistence\nprofiles · atomic JSON · project files"];
+ Assets [label="Bundled assets\nmenu frames · portraits · SFX"];
+ UI -> Screens; Screens -> World; Screens -> Music; Screens -> Story; Music -> Audio; Story -> Music [label="commission",fontsize=9]; World -> Story; Music -> Store; Story -> Store; Screens -> Store; Assets -> Screens;
+}
